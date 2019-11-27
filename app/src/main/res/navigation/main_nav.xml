@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_nav"
+  app:startDestination="@id/authFragment">
+  <fragment
+    android:id="@+id/authFragment"
+    android:name="com.example.chatapplication.ui.auth.AuthFragment"
+    android:label="AuthFragment" >
+    <action
+      android:id="@+id/act_auth_to_login"
+      app:destination="@id/loginFragment" />
+    <action
+      android:id="@+id/act_auth_to_signup"
+      app:destination="@id/signupFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/loginFragment"
+    android:name="com.example.chatapplication.ui.login.LoginFragment"
+    android:label="LoginFragment" >
+    <action
+      android:id="@+id/act_login_to_signup"
+      app:destination="@id/signupFragment"
+      app:popUpTo="@+id/authFragment" />
+    <action
+      android:id="@+id/act_login_to_chat"
+      app:destination="@id/chatFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/signupFragment"
+    android:name="com.example.chatapplication.ui.signup.SignupFragment"
+    android:label="SignupFragment" >
+    <action
+      android:id="@+id/act_signup_to_login"
+      app:destination="@id/loginFragment"
+      app:popUpTo="@+id/authFragment" />
+    <action
+      android:id="@+id/act_signup_to_chat"
+      app:destination="@id/chatFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/chatFragment"
+    android:name="com.example.chatapplication.ui.chat.ChatFragment"
+    android:label="ChatFragment" />
+</navigation>

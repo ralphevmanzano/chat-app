@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <data>
+
+    <variable
+      name="viewModel"
+      type="com.example.chatapplication.ui.auth.AuthViewModel" />
+  </data>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    tools:context=".ui.auth.AuthFragment">
+
+    <ImageView
+      android:layout_width="124dp"
+      android:layout_height="124dp"
+      android:contentDescription="@string/chat_app_logo"
+      android:src="@drawable/logo"
+      android:tint="@color/lightGreen" />
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:includeFontPadding="false"
+      android:letterSpacing="0.1"
+      android:text="@string/app_name"
+      android:textColor="@android:color/black"
+      android:textSize="28sp"
+      android:textStyle="bold" />
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="24dp" />
+
+    <Button
+      android:id="@+id/btnSignUp"
+      style="@style/Button.ChatButtonTheme"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:onClick="@{() -> viewModel.goToSignup()}"
+      android:text="@string/sign_up"
+      android:backgroundTint="@color/darkGreen" />
+
+    <Button
+      android:id="@+id/btnLogin"
+      style="@style/Button.ChatButtonTheme"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/bg_rounded"
+      android:onClick="@{() -> viewModel.goToLogin()}"
+      android:text="@string/login"
+      android:backgroundTint="@color/lightGreen" />
+
+  </LinearLayout>
+</layout>

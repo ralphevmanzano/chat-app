@@ -1,0 +1,11 @@
+<resources>
+  <string name="app_name">Chat app</string>
+  <string name="chat_app_logo">Chat app logo</string>
+  <string name="sign_up">Sign up</string>
+  <string name="login">Login</string>
+  <string name="username">Username</string>
+  <string name="value_is_incorrect">Value is incorrect</string>
+  <string name="password">password</string>
+  <string name="terms_of_service">By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use. Others will be able to find you by searching for your email address or phone number when provided.</string>
+  <string name="log_out">Log out</string>
+</resources>
