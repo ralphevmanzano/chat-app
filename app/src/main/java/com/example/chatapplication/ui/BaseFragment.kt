@@ -54,7 +54,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> :
     observeNavigationEvents()
   }
 
-  protected abstract fun observeNavigationEvents()
+  protected open fun observeNavigationEvents(){}
 
   protected fun navigateTo(navEventArgs: NavEventArgs) {
     findNavController().navigate(navEventArgs.actionId, navEventArgs.bundle)

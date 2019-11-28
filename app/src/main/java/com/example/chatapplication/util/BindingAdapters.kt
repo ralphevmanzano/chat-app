@@ -1,7 +1,11 @@
 package com.example.chatapplication.util
 
-// TODO: Add your binding adapters here, sample given below
-//@BindingAdapter("app:tasks")
-//fun setTasks(listView: RecyclerView, items: List<Task>) {
-//  (listView.adapter as TasksAdapter).submitList(items)
-//}
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.chatapplication.data.models.Chat
+import com.example.chatapplication.ui.chat.ChatAdapter
+
+@BindingAdapter("app:chats")
+fun setChats(listView: RecyclerView, items: List<Chat>) {
+  (listView.adapter as ChatAdapter).submitList(items)
+}

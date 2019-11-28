@@ -1,11 +1,7 @@
 package com.example.chatapplication.ui.chat
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 
 import com.example.chatapplication.R
 import com.example.chatapplication.databinding.ChatFragmentBinding
@@ -24,11 +20,17 @@ class ChatFragment : BaseFragment<ChatViewModel, ChatFragmentBinding>() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     showLogOutButton(true)
-
+    viewModel.setup(arguments?.getString("userName"))
   }
 
-  override fun observeNavigationEvents() {
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    initRecyclerView()
+  }
 
+  private fun initRecyclerView() {
+    val adapter = ChatAdapter()
+    binding.rv.adapter = adapter
   }
 
 }

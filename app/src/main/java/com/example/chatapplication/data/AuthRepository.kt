@@ -10,13 +10,10 @@ import javax.inject.Inject
 
 class AuthRepository @Inject constructor() {
 
-  val ref = FirebaseFirestore.getInstance().collection("users")
+  private val ref = FirebaseFirestore.getInstance().collection("users")
 
   fun signup(authUser: AuthUser): Task<DocumentReference> {
-    val user = HashMap<String, Any>()
-    user["userName"] = authUser.userName
-    user["password"] = authUser.password
-    return ref.add(user)
+    return ref.add(authUser)
   }
 
   fun checkUserNames(userName: String) : Task<QuerySnapshot> {

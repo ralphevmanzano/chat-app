@@ -1,48 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  tools:context=".ui.MainActivity">
+  xmlns:tools="http://schemas.android.com/tools">
 
-  <androidx.appcompat.widget.Toolbar
-    android:id="@+id/toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/divider_toolbar"
-    android:paddingStart="16dp"
-    android:elevation="0dp"
-    android:paddingEnd="16dp">
+  <data>
+    <variable
+      name="viewModel"
+      type="com.example.chatapplication.ui.MainViewModel" />
+  </data>
 
-    <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:includeFontPadding="false"
-      android:letterSpacing="0.1"
-      android:text="@string/app_name"
-      android:textColor="@android:color/black"
-      android:textSize="20sp"
-      android:textStyle="bold" />
-
-    <Button
-      android:id="@+id/btnLogout"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="end"
-      android:text="@string/log_out"
-      style="@style/Button.GrayButton"/>
-
-  </androidx.appcompat.widget.Toolbar>
-
-  <androidx.fragment.app.FragmentContainerView
-    android:id="@+id/nav_host_fragment"
-    android:name="androidx.navigation.fragment.NavHostFragment"
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:defaultNavHost="true"
-    app:navGraph="@navigation/main_nav" />
+    android:orientation="vertical"
+    tools:context=".ui.MainActivity">
 
-</LinearLayout>
+    <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@drawable/divider_toolbar"
+      android:paddingStart="16dp"
+      android:elevation="0dp"
+      android:paddingEnd="16dp">
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:includeFontPadding="false"
+        android:letterSpacing="0.1"
+        android:text="@string/app_name"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+      <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="@string/log_out"
+        android:onClick="@{() -> viewModel.logOut()}"
+        style="@style/Button.GrayButton" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.fragment.app.FragmentContainerView
+      android:id="@+id/nav_host_fragment"
+      android:name="androidx.navigation.fragment.NavHostFragment"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:defaultNavHost="true"
+      app:navGraph="@navigation/main_nav" />
+
+  </LinearLayout>
+</layout>
