@@ -15,6 +15,7 @@ import com.example.kotlin_starter_app.ui.BaseFragment
 import com.example.todo_app.util.EventObserver
 
 class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding>() {
+
   override fun getViewModel(): Class<LoginViewModel> {
     return LoginViewModel::class.java
   }
@@ -38,10 +39,9 @@ class LoginFragment : BaseFragment<LoginViewModel, LoginFragmentBinding>() {
     binding.txtSignup.paintFlags = Paint.UNDERLINE_TEXT_FLAG
   }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
-    viewModel.signUpEvent.observe(viewLifecycleOwner, EventObserver {
-      navigateTo(R.id.act_login_to_signup)
+  override fun observeNavigationEvents() {
+    viewModel.navigationEvent.observe(viewLifecycleOwner, EventObserver { navEventArgs ->
+      navigateTo(navEventArgs)
     })
   }
 }

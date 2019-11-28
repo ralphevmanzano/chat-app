@@ -9,13 +9,16 @@ import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-  AndroidInjectionModule::class,
-  AuthModule::class,
-  LoginModule::class,
-  SignupModule::class
-])
-interface ApplicationComponent: AndroidInjector<ChatApp> {
+@Component(
+  modules = [
+    AndroidInjectionModule::class,
+    AuthModule::class,
+    LoginModule::class,
+    SignupModule::class,
+    ChatModule::class
+  ]
+)
+interface ApplicationComponent : AndroidInjector<ChatApp> {
 
   @Component.Factory
   interface Factory {

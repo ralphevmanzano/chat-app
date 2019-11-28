@@ -26,16 +26,9 @@ class AuthFragment : BaseFragment<AuthViewModel, AuthFragmentBinding>() {
     showLogOutButton(false)
   }
 
-  override fun onActivityCreated(savedInstanceState: Bundle?) {
-    super.onActivityCreated(savedInstanceState)
-
-    viewModel.signupEvent.observe(viewLifecycleOwner, EventObserver {
-      navigateTo(R.id.act_auth_to_signup)
+  override fun observeNavigationEvents() {
+    viewModel.navigationEvent.observe(viewLifecycleOwner, EventObserver { navEventArgs ->
+      navigateTo(navEventArgs)
     })
-
-    viewModel.loginEvent.observe(viewLifecycleOwner, EventObserver {
-      navigateTo(R.id.act_auth_to_login)
-    })
-
   }
 }
