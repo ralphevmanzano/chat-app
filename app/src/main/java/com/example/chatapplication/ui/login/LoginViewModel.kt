@@ -1,15 +1,19 @@
 package com.example.chatapplication.ui.login
 
 import android.util.Log
+import androidx.core.os.bundleOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.chatapplication.R
 import com.example.chatapplication.data.AuthRepository
 import com.example.chatapplication.data.models.AuthUser
+import com.example.chatapplication.data.models.NavEventArgs
+import com.example.chatapplication.data.models.validateAuthFields
+import com.example.kotlin_starter_app.ui.BaseViewModel
 import com.example.todo_app.util.Event
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(private val repository: AuthRepository) : ViewModel() {
+class LoginViewModel @Inject constructor(private val repository: AuthRepository) : BaseViewModel() {
   val authUser = AuthUser()
 
   private val _isUserNameInvalid = MutableLiveData<Boolean>(false)
@@ -18,24 +22,30 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepository)
   private val _isPasswordInvalid = MutableLiveData<Boolean>(false)
   val isPasswordInvalid: LiveData<Boolean> get() = _isPasswordInvalid
 
-  private val _signUpEvent = MutableLiveData<Event<Unit>>()
-  val signUpEvent: LiveData<Event<Unit>> = _signUpEvent
-
   fun goToSignUp() {
-    _signUpEvent.value = Event(Unit)
+    _navigationEvent.value = Event(NavEventArgs(R.id.act_login_to_signup))
+  }
+
+  fun goToChat() {
+    _navigationEvent.value =
+      Event(NavEventArgs(R.id.act_login_to_chat, bundleOf("userName" to authUser.userName)))
   }
 
   fun login() {
     clearErrors()
-    if (isFormValid()) {
+    authUser.validateAuthFields({
       checkIfUserNameAvailable()
-    }
+    }, {
+      _isUserNameInvalid.value = true
+    }, {
+      _isPasswordInvalid.value = true
+    })
   }
 
   private fun checkIfUserNameAvailable() {
     repository.checkUserNames(authUser.userName).addOnSuccessListener {
       if (it.documents.isNotEmpty()) {
-//        addUserToDatabase()
+        goToChat()
         return@addOnSuccessListener
       }
       Log.d("ViewModel", "Username is already used!")
@@ -57,25 +67,4 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepository)
     _isPasswordInvalid.value = false
   }
 
-  private fun isFormValid(): Boolean {
-    val userNameValid = validateUserName()
-    val passwordValid = validatePassword()
-    return userNameValid && passwordValid
-  }
-
-  private fun validateUserName(): Boolean {
-    if (authUser.userName.isEmpty()) {
-      _isUserNameInvalid.value = true
-      return false
-    }
-    return true
-  }
-
-  private fun validatePassword(): Boolean {
-    if (authUser.password.isEmpty()) {
-      _isPasswordInvalid.value = true
-      return false
-    }
-    return true
-  }
 }

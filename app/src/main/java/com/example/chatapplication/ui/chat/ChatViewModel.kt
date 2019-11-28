@@ -1,7 +1,8 @@
 package com.example.chatapplication.ui.chat
 
-import androidx.lifecycle.ViewModel
+import com.example.kotlin_starter_app.ui.BaseViewModel
+import javax.inject.Inject
 
-class ChatViewModel : ViewModel() {
+class ChatViewModel @Inject constructor() : BaseViewModel() {
   // TODO: Implement the ViewModel
 }

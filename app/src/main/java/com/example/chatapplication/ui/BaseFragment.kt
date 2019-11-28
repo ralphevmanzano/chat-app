@@ -5,19 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.annotation.Nullable
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.chatapplication.BR
+import com.example.chatapplication.data.models.NavEventArgs
 import com.example.chatapplication.ui.MainActivity
 import com.example.chatapplication.util.hideKeyboard
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-abstract class BaseFragment<VM : ViewModel, DB : ViewDataBinding> :
+abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> :
   DaggerFragment() {
 
   @Inject
@@ -47,8 +49,15 @@ abstract class BaseFragment<VM : ViewModel, DB : ViewDataBinding> :
     return binding.root
   }
 
-  protected fun navigateTo(actionId: Int) {
-    findNavController().navigate(actionId)
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
+    observeNavigationEvents()
+  }
+
+  protected abstract fun observeNavigationEvents()
+
+  protected fun navigateTo(navEventArgs: NavEventArgs) {
+    findNavController().navigate(navEventArgs.actionId, navEventArgs.bundle)
   }
 
   protected fun hideKeyboard() {

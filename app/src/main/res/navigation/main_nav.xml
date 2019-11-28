@@ -8,10 +8,12 @@
     android:label="AuthFragment" >
     <action
       android:id="@+id/act_auth_to_login"
-      app:destination="@id/loginFragment" />
+      app:destination="@id/loginFragment"
+      app:launchSingleTop="true" />
     <action
       android:id="@+id/act_auth_to_signup"
-      app:destination="@id/signupFragment" />
+      app:destination="@id/signupFragment"
+      app:launchSingleTop="true" />
   </fragment>
   <fragment
     android:id="@+id/loginFragment"
@@ -20,10 +22,13 @@
     <action
       android:id="@+id/act_login_to_signup"
       app:destination="@id/signupFragment"
+      app:launchSingleTop="true"
       app:popUpTo="@+id/authFragment" />
     <action
       android:id="@+id/act_login_to_chat"
-      app:destination="@id/chatFragment" />
+      app:destination="@id/chatFragment"
+      app:launchSingleTop="true"
+      app:popUpTo="@+id/main_nav" />
   </fragment>
   <fragment
     android:id="@+id/signupFragment"
@@ -32,13 +37,22 @@
     <action
       android:id="@+id/act_signup_to_login"
       app:destination="@id/loginFragment"
+      app:launchSingleTop="true"
       app:popUpTo="@+id/authFragment" />
     <action
       android:id="@+id/act_signup_to_chat"
-      app:destination="@id/chatFragment" />
+      app:destination="@id/chatFragment"
+      app:launchSingleTop="true"
+      app:popUpTo="@+id/main_nav" />
   </fragment>
   <fragment
     android:id="@+id/chatFragment"
     android:name="com.example.chatapplication.ui.chat.ChatFragment"
-    android:label="ChatFragment" />
+    android:label="ChatFragment" >
+    <action
+      android:id="@+id/act_chat_to_auth"
+      app:destination="@id/authFragment"
+      app:launchSingleTop="true"
+      app:popUpTo="@+id/main_nav" />
+  </fragment>
 </navigation>

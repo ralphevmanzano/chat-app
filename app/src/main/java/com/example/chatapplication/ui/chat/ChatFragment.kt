@@ -23,9 +23,12 @@ class ChatFragment : BaseFragment<ChatViewModel, ChatFragmentBinding>() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    showLogOutButton(false)
+    showLogOutButton(true)
 
   }
 
+  override fun observeNavigationEvents() {
+
+  }
 
 }
