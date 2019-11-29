@@ -33,6 +33,8 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepository)
 
   fun login() {
     clearErrors()
+    hideKeyboard()
+
     authUser.validateAuthFields({
       checkIfUserNameAvailable()
     }, {
@@ -45,8 +47,10 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepository)
   private fun checkIfUserNameAvailable() {
     repository.checkUserNames(authUser.userName).addOnSuccessListener {
       if (it.documents.isNotEmpty()) {
-        goToChat()
-        return@addOnSuccessListener
+        if (it.documents[0]["password"] == authUser.password) {
+          goToChat()
+          return@addOnSuccessListener
+        }
       }
       Log.d("ViewModel", "Username is already used!")
       showErrors()

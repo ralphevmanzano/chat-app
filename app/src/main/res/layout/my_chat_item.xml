@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
 
   <data>
 
@@ -12,29 +13,37 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="24dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="24dp">
 
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="end"
-      android:background="@drawable/my_chat"
+      android:background="@drawable/my_chat_bubble"
+      android:gravity="center_vertical"
       android:includeFontPadding="false"
       android:letterSpacing="0.06"
+      android:maxWidth="280dp"
+      android:minHeight="42dp"
+      android:paddingLeft="8dp"
+      android:paddingTop="8dp"
+      android:paddingRight="16dp"
+      android:paddingBottom="8dp"
       android:text="@{chat.message}"
       android:textColor="@android:color/white"
-      android:textSize="18sp" />
+      android:textSize="16sp"
+      tools:ignore="RtlHardcoded" />
 
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="end"
+      android:layout_marginEnd="12dp"
       android:letterSpacing="0.06"
+      android:text="@{chat.senderLabel}"
       android:textColor="@color/blueGray"
-      android:layout_marginEnd="16dp"
-      android:text="@{chat.userName}"
-      android:textSize="18sp" />
+      android:textSize="16sp" />
 
   </LinearLayout>
 </layout>

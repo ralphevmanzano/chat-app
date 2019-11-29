@@ -35,6 +35,8 @@ class SignupViewModel @Inject constructor(private val repository: AuthRepository
 
   fun signUp() {
     clearErrors()
+    hideKeyboard()
+
     authUser.validateAuthFields({
       checkIfUserNameAvailable()
     }, {

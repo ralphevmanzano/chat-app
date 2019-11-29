@@ -9,7 +9,7 @@ import com.example.todo_app.util.Event
 open class BaseViewModel : ViewModel() {
 
   protected val _hideKeyboardEvent = MutableLiveData<Event<Unit>>()
-  val hideKeyboard: LiveData<Event<Unit>> = _hideKeyboardEvent
+  val hideKeyboardEvent: LiveData<Event<Unit>> = _hideKeyboardEvent
 
   protected val _snackbarEvent = MutableLiveData<Event<String>>()
   val snackbarEvent: LiveData<Event<String>> = _snackbarEvent
@@ -17,4 +17,7 @@ open class BaseViewModel : ViewModel() {
   protected val _navigationEvent = MutableLiveData<Event<NavEventArgs>>()
   val navigationEvent: LiveData<Event<NavEventArgs>> = _navigationEvent
 
+  protected fun hideKeyboard() {
+    _hideKeyboardEvent.value = Event(Unit)
+  }
 }

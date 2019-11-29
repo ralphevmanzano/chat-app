@@ -17,6 +17,6 @@ class AuthRepository @Inject constructor() {
   }
 
   fun checkUserNames(userName: String) : Task<QuerySnapshot> {
-    return ref.whereEqualTo("userName", userName).get()
+    return ref.whereEqualTo("userName", userName).limit(1).get()
   }
 }
